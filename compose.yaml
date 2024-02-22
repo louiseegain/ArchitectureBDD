@@ -1,10 +1,12 @@
+version: '3'
+
 services:
   php:
     build: .
     volumes:
       - .:/app
     ports:
-      - "8000:80"  # Adapter le port si nécessaire
+      - "8000:80"
 
   database-users:
     image: postgres:latest
@@ -13,7 +15,7 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: master
     volumes:
-      - database-users:/var/lib/postgresql/data
+      - ./docker/db/data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
@@ -24,18 +26,18 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: master
     volumes:
-      - database-erp:/var/lib/postgresql/data
+      - ./docker/db/data:/var/lib/postgresql/data
     ports:
       - "5433:5433"
 
-    database-products:
+  database-products:
     image: postgres:latest
     environment:
       POSTGRES_DB: db-products
       POSTGRES_USER: root
       POSTGRES_PASSWORD: master
     volumes:
-      - database-products:/var/lib/postgresql/data
+      - ./docker/db/data:/var/lib/postgresql/data
     ports:
       - "5434:5434"
 
@@ -46,7 +48,7 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: master
     volumes:
-      - database-reviews:/var/lib/postgresql/data
+      - ./docker/db/data:/var/lib/postgresql/data
     ports:
       - "5435:5435"
 
@@ -57,7 +59,7 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: master
     volumes:
-      - database-orders:/var/lib/postgresql/data
+      - ./docker/db/data:/var/lib/postgresql/data
     ports:
       - "5436:5436"
 
@@ -68,8 +70,6 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: master
     volumes:
-      - database-promotions:/var/lib/postgresql/data
+      - ./docker/db/data:/var/lib/postgresql/data
     ports:
       - "5437:5437"
-
-  

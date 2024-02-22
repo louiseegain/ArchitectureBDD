@@ -1,0 +1,7 @@
+services:
+  php:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "8000:80"  # Adapter le port si nécessaire

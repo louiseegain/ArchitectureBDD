@@ -3,8 +3,15 @@
 
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
+use Doctrine\DBAL\Types\Type;
+use Ramsey\Uuid\Doctrine\UuidBinaryType;
 
 require_once 'bootstrap.php';
+
+try {
+    Type::addType('uuid', UuidBinaryType::class);
+} catch (\Doctrine\DBAL\Exception $e) {
+}
 
 $entityManager = GetEntityManager();
 

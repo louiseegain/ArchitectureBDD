@@ -17,9 +17,7 @@ EXPOSE 80
 CMD ["apache2ctl", "-D", "FOREGROUND"]
 
 # Install Doctrine
-RUN composer require doctrine/orm
-RUN composer require symfony/cache
-RUN composer require ramsey/uuid
+RUN composer install
 
 RUN chmod +x bin/doctrine.php
 RUN #php bin/doctrine.php orm:schema-tool:create

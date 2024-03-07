@@ -3,7 +3,8 @@
         "doctrine/orm": "*",
         "symfony/cache": "^7.0",
         "ramsey/uuid-doctrine": "^2.0",
-        "symfony/flex": "^2.4"
+        "symfony/flex": "^2.4",
+        "doctrine/migrations": "^3.7"
     },
     "config": {
         "allow-plugins": {

@@ -39,7 +39,7 @@ class User
     #[ORM\Column]
     private ?string $old_password = null;
 
-    #[ORM\Column (lenght :100)]
+    #[ORM\Column (length :100)]
     private ?string $remember_token = null;
 
     #[ORM\Column]

@@ -18,42 +18,42 @@ class User
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     private ?UuidInterface $uid = null;
 
-    #[ORM\Column(unique: true)]
+    #[ORM\Column(unique: true, nullable:false)]
     private ?string $email = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable:false)]
     private array $roles = [];
 
-    #[ORM\Column (length: 50)]
+    #[ORM\Column (length: 50, nullable:false)]
     private ?string $firstname = null;
 
-    #[ORM\Column (length: 50)]
+    #[ORM\Column (length: 50, nullable:false)]
     private ?string $lastname = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable:false)]
     private ?DateTime $email_verified_at = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable:false)]
     private ?string $password = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable:true)]
     private ?string $old_password = null;
 
-    #[ORM\Column (lenght :100)]
+    #[ORM\Column (length :100, nullable:false)]
     private ?string $remember_token = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable:false)]
     private ?DateTime $birthday = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable:false)]
     private ?string $phone = null;
 
 
-    #[ORM\Column]
+    #[ORM\Column(nullable:false)]
     private ?DateTime $created_at = null;
 
 
-    #[ORM\Column]
+    #[ORM\Column(nullable:true)]
     private ?DateTime $updated_at = null;
 
     public function __construct()

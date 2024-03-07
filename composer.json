@@ -1,0 +1,7 @@
+{
+    "require": {
+        "doctrine/orm": "*",
+        "symfony/cache": "^7.0",
+        "ramsey/uuid": "^4.7"
+    }
+}

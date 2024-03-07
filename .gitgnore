@@ -1,3 +1,6 @@
 ###docker###
 /docker/db/
 /docker/
+
+###composer###
+/vendor/

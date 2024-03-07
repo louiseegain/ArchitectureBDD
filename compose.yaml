@@ -2,74 +2,87 @@ version: '3'
 
 services:
   php:
+    image: ${IMAGES_PREFIX:-}app-php
+    restart: unless-stopped
     build: .
     volumes:
       - .:/app
     ports:
       - "8000:80"
+    networks:
+      - my-network
 
   database-users:
     image: postgres:latest
+    restart: unless-stopped
     environment:
       POSTGRES_DB: db-users
       POSTGRES_USER: root
       POSTGRES_PASSWORD: master
     volumes:
-      - ./docker/db/data:/var/lib/postgresql/data
+      - ./docker/db/data:/var/lib/postgresql/data --clean
     ports:
       - "5432:5432"
+    networks:
+      - my-network
 
-  database-erp:
-    image: postgres:latest
-    environment:
-      POSTGRES_DB: db-erp
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: master
-    volumes:
-      - ./docker/db/data:/var/lib/postgresql/data
-    ports:
-      - "5433:5433"
+#  database-erp:
+#    image: postgres:latest
+#    environment:
+#      POSTGRES_DB: db-erp
+#      POSTGRES_USER: root
+#      POSTGRES_PASSWORD: master
+#    volumes:
+#      - ./docker/db/data:/var/lib/postgresql/data
+#    ports:
+#      - "5433:5433"
+#
+#  database-products:
+#    image: postgres:latest
+#    environment:
+#      POSTGRES_DB: db-products
+#      POSTGRES_USER: root
+#      POSTGRES_PASSWORD: master
+#    volumes:
+#      - ./docker/db/data:/var/lib/postgresql/data
+#    ports:
+#      - "5434:5434"
+#
+#  database-reviews:
+#    image: postgres:latest
+#    environment:
+#      POSTGRES_DB: db-reviews
+#      POSTGRES_USER: root
+#      POSTGRES_PASSWORD: master
+#    volumes:
+#      - ./docker/db/data:/var/lib/postgresql/data
+#    ports:
+#      - "5435:5435"
+#
+#  database-orders:
+#    image: postgres:latest
+#    environment:
+#      POSTGRES_DB: db-orders
+#      POSTGRES_USER: root
+#      POSTGRES_PASSWORD: master
+#    volumes:
+#      - ./docker/db/data:/var/lib/postgresql/data
+#    ports:
+#      - "5436:5436"
+#
+#  database-promotions:
+#    image: postgres:latest
+#    environment:
+#      POSTGRES_DB: db-promotions
+#      POSTGRES_USER: root
+#      POSTGRES_PASSWORD: master
+#    volumes:
+#      - ./docker/db/data:/var/lib/postgresql/data
+#    ports:
+#      - "5437:5437"
 
-  database-products:
-    image: postgres:latest
-    environment:
-      POSTGRES_DB: db-products
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: master
-    volumes:
-      - ./docker/db/data:/var/lib/postgresql/data
-    ports:
-      - "5434:5434"
 
-  database-reviews:
-    image: postgres:latest
-    environment:
-      POSTGRES_DB: db-reviews
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: master
-    volumes:
-      - ./docker/db/data:/var/lib/postgresql/data
-    ports:
-      - "5435:5435"
 
-  database-orders:
-    image: postgres:latest
-    environment:
-      POSTGRES_DB: db-orders
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: master
-    volumes:
-      - ./docker/db/data:/var/lib/postgresql/data
-    ports:
-      - "5436:5436"
-
-  database-promotions:
-    image: postgres:latest
-    environment:
-      POSTGRES_DB: db-promotions
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: master
-    volumes:
-      - ./docker/db/data:/var/lib/postgresql/data
-    ports:
-      - "5437:5437"
+networks:
+  my-network:
+    driver: bridge

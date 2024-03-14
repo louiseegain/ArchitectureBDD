@@ -9,6 +9,7 @@
 /vendor/
 /docker/
 /docker/db/
+.idea/
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###

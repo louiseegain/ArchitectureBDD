@@ -1,3 +1,5 @@
+#syntax=docker/dockerfile:1.4
+
 # Versions
 FROM dunglas/frankenphp:1-php8.3 AS frankenphp_upstream
 
@@ -27,6 +29,7 @@ RUN set -eux; \
 		intl \
 		opcache \
 		zip \
+        pdo_pgsql \
 	;
 
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser

@@ -40,7 +40,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-root}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-master}
     volumes:
-      - ./docker/db/data:/var/lib/postgresql/data
+      - ./docker/db/data:/var/lib/postgresql/data --clean
     ports:
       - "5432:5432"
 #    networks:
